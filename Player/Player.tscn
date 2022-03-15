@@ -99,8 +99,5 @@ texture = ExtResource( 4 )
 wait_time = 7.0
 autostart = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
