@@ -303,4 +303,5 @@ position = Vector2( 320, 450 )
 tile_set = SubResource( 12 )
 cell_size = Vector2( 32, 27 )
 cell_half_offset = 0
+collision_layer = 4
 format = 1
