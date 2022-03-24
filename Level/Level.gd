@@ -2,6 +2,7 @@ extends Node2D
 
 onready var Hex = $TileMap
 signal spawn_bubble
+signal prepare_bubble
 
 var PlayerLoc: Vector2
 
@@ -26,3 +27,18 @@ func get_PlayerLoc():
 
 func _on_Player_fire_bubble(angle):
 	emit_signal("spawn_bubble", angle, PlayerLoc)
+	check_remaining_bubbles()
+
+
+func check_remaining_bubbles():
+	var available_bubbles = []
+	for bubble in number_of_bubble_types:
+		available_bubbles.append(bubble)
+	emit_signal("prepare_bubble", available_bubbles)
+
+
+
+
+
+
+
