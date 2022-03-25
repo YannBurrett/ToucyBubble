@@ -12,6 +12,7 @@ func _on_Level_spawn_bubble(angle, location):
 	new_Bubble.global_position = location
 	add_child(new_Bubble)
 	new_Bubble.apply_central_impulse(-Vector2(0,1).rotated(angle) * SPEED)
+	new_Bubble.connect("bubble_stopped", get_parent(), "bubble_stopped")
 
 
 

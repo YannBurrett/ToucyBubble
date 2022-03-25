@@ -37,6 +37,12 @@ func check_remaining_bubbles():
 	emit_signal("prepare_bubble", available_bubbles)
 
 
+func bubble_stopped(pos, bubble, type):
+	pos = $TileMap.world_to_map(pos)
+	$TileMap.set_cell(pos.x, pos.y, type)
+	bubble.queue_free()
+
+
 
 
 
