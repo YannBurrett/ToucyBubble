@@ -273,9 +273,6 @@ anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 320, 256 )
@@ -320,7 +317,12 @@ position = Vector2( 319, 512 )
 texture = ExtResource( 5 )
 hframes = 10
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="prepare_bubble" from="." to="NextBubble" method="_on_Level_prepare_bubble"]
 [connection signal="spawn_bubble" from="." to="BubbleSpawner" method="_on_Level_spawn_bubble"]
 [connection signal="fire_bubble" from="Player" to="." method="_on_Player_fire_bubble"]
 [connection signal="next_bubble" from="NextBubble" to="BubbleSpawner" method="_on_NextBubble_next_bubble"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
