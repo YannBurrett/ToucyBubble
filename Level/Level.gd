@@ -15,6 +15,7 @@ const CELL_TYPE = 1
 export (int, 2, 10) var number_of_bubble_types = 4
 
 var bubble_pop_particle = preload("res://Particles/BubblePop.tscn")
+var bubble_drop_particle = preload("res://Particles/BubbleDrop.tscn")
 
 func _ready():
 	randomize()
@@ -128,6 +129,11 @@ func check_detatched_bubbles():
 	###Remove detatched bubbles
 	for bubble in detached_bubbles:
 		if not matching_bubbles.has(bubble):
+			var drop = bubble_drop_particle.instance()
+			add_child(drop)
+			drop.position = $TileMap.map_to_world(bubble) + Vector2(16,16)
+			drop.type = $TileMap.get_cellv(bubble)
 			$TileMap.set_cellv(bubble, -1)
+	get_tree().call_group("Drop", "drop_bubbles")
 
 
