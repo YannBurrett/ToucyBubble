@@ -14,6 +14,8 @@ const CELL_TYPE = 1
 
 export (int, 2, 10) var number_of_bubble_types = 4
 
+var bubble_pop_particle = preload("res://Particles/BubblePop.tscn")
+
 func _ready():
 	randomize()
 	for x in range (1,MAP_X):
@@ -93,7 +95,13 @@ func check_bubble_counter():
 	if matching_bubbles.size() > 2:
 		# increment score
 		for bubble in matching_bubbles:
+			var pop = bubble_pop_particle.instance()
+			add_child(pop)
+			pop.position = $TileMap.map_to_world(bubble) + Vector2(16,16)
+			pop.type = $TileMap.get_cellv(bubble)
+			pop.add_to_group("pop")
 			$TileMap.set_cellv(bubble, -1)
+		get_tree().call_group("pop", "pop_bubbles")
 	check_detatched_bubbles()
 
 
