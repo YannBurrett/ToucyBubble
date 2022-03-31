@@ -94,9 +94,32 @@ func check_bubble_counter():
 		# increment score
 		for bubble in matching_bubbles:
 			$TileMap.set_cellv(bubble, -1)
+	check_detatched_bubbles()
 
 
+func check_detatched_bubbles():
+	var detached_bubbles = $TileMap.get_used_cells()
+	
+	bubbles_checked = []
+	matching_bubbles = []
+	
+	### Mark top row of bubbles as attached
+	for bubble_number in detached_bubbles.size():
+		if detached_bubbles[bubble_number].y == 0:
+			matching_bubbles.append(detached_bubbles[bubble_number])
+	
+	### Check for contiguous bubbles
+	for cell in detached_bubbles:
+		bubbles_checked.append(cell)
+		var neighbours = get_my_neighbours(cell)
+		for n in neighbours:
+			if matching_bubbles.has(cell) and not bubbles_checked.has(cell+n):
+				matching_bubbles.append(cell+n)
+				
 
-
+	###Remove detatched bubbles
+	for bubble in detached_bubbles:
+		if not matching_bubbles.has(bubble):
+			$TileMap.set_cellv(bubble, -1)
 
 
