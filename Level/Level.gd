@@ -10,6 +10,7 @@ var bubbles_checked = []
 
 const MAP_X = 19
 const MAP_Y = 13
+const CELL_TYPE = 1
 
 export (int, 2, 10) var number_of_bubble_types = 4
 
@@ -20,7 +21,7 @@ func _ready():
 			var bubble_type = randi() % number_of_bubble_types
 			Hex.set_cell(x,y,bubble_type)
 	PlayerLoc = get_PlayerLoc()
-	print(PlayerLoc)
+	check_remaining_bubbles()
 
 
 func get_PlayerLoc():
@@ -33,9 +34,14 @@ func _on_Player_fire_bubble(angle):
 
 
 func check_remaining_bubbles():
+	var bubbles = []
+	var cells = $TileMap.get_used_cells()
+	for cell in cells:
+		bubbles.append([cell, $TileMap.get_cellv(cell)])
 	var available_bubbles = []
-	for bubble in number_of_bubble_types:
-		available_bubbles.append(bubble)
+	for bubble in bubbles:
+		if not available_bubbles.has(bubble[CELL_TYPE]):
+			available_bubbles.append(bubble[CELL_TYPE])
 	emit_signal("prepare_bubble", available_bubbles)
 
 
