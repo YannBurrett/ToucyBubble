@@ -3,14 +3,17 @@ extends Node2D
 onready var Hex = $TileMap
 signal spawn_bubble
 signal prepare_bubble
+signal can_fire
 
 var PlayerLoc: Vector2
 var matching_bubbles = []
 var bubbles_checked = []
+var spawn_counter = 0
 
 const MAP_X = 19
 const MAP_Y = 13
 const CELL_TYPE = 1
+const SPAWN_LIMIT = 10
 
 export (int, 2, 10) var number_of_bubble_types = 4
 
@@ -49,15 +52,19 @@ func check_remaining_bubbles():
 
 
 func bubble_stopped(pos, bubble, type):
+	pos = $TileMap.to_local(pos)
 	pos = $TileMap.world_to_map(pos)
 	$TileMap.set_cell(pos.x, pos.y, type)
 	bubble.queue_free()
+	
+	check_game_over()
 	
 	###check for matches
 	matching_bubbles = [pos]
 	bubbles_checked = []
 	$Timer.start()
 	check_neighbours(pos)
+	spawn_counter += 1
 
 
 func check_neighbours(cell):
@@ -90,6 +97,10 @@ func get_my_neighbours(cell):
 
 func _on_Timer_timeout():
 	check_bubble_counter()
+	check_spawn_counter()
+	emit_signal("can_fire", true)
+	check_game_over()
+
 
 
 func check_bubble_counter():
@@ -98,7 +109,7 @@ func check_bubble_counter():
 		for bubble in matching_bubbles:
 			var pop = bubble_pop_particle.instance()
 			add_child(pop)
-			pop.position = $TileMap.map_to_world(bubble) + Vector2(16,16)
+			pop.position = $TileMap.to_global($TileMap.map_to_world(bubble) + Vector2(16,16))
 			pop.type = $TileMap.get_cellv(bubble)
 			pop.add_to_group("pop")
 			$TileMap.set_cellv(bubble, -1)
@@ -131,9 +142,58 @@ func check_detatched_bubbles():
 		if not matching_bubbles.has(bubble):
 			var drop = bubble_drop_particle.instance()
 			add_child(drop)
-			drop.position = $TileMap.map_to_world(bubble) + Vector2(16,16)
+			drop.position = $TileMap.to_global($TileMap.map_to_world(bubble) + Vector2(16,16))
 			drop.type = $TileMap.get_cellv(bubble)
 			$TileMap.set_cellv(bubble, -1)
 	get_tree().call_group("Drop", "drop_bubbles")
 
 
+func check_spawn_counter():
+	if spawn_counter == SPAWN_LIMIT:
+		move_ceiling_down()
+
+
+func move_ceiling_down():
+	$BubbleTween.interpolate_property($TileMap, "position",
+			$TileMap.position, $TileMap.position + Vector2(0,27),
+			0.5,
+			$BubbleTween.TRANS_ELASTIC,
+			Tween.EASE_IN_OUT
+			)
+	$BubbleTween.start()
+	$CeilingTween.interpolate_property($Ceiling, "position",
+			$Ceiling.position, $Ceiling.position + Vector2(0,27),
+			0.5,
+			$CeilingTween.TRANS_ELASTIC,
+			Tween.EASE_IN_OUT
+			)
+	$CeilingTween.start()
+	spawn_counter = 0
+
+
+
+func game_over(_has_won):
+	if $Player:
+		$Player.queue_free()
+		$NextBubble.queue_free()
+
+
+
+func check_game_over():
+	var bubbles = $TileMap.get_used_cells()
+
+	if bubbles.size() == 0: 
+		game_over(true)
+		return
+	
+	var finish_line = $TileMap.to_local(Vector2(0,350))
+	finish_line = $TileMap.world_to_map(finish_line)
+	finish_line = finish_line.y
+	
+	for bubble in bubbles:
+		if bubble.y >= finish_line:
+			game_over(false)
+
+
+func _on_BubbleTween_tween_all_completed():
+	check_game_over()

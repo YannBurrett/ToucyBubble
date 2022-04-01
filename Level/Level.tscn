@@ -283,7 +283,7 @@ color = Color( 0.513726, 0.501961, 0.501961, 1 )
 polygon = PoolVector2Array( 18, 460, 640, 460, 640, 600, 18, 600 )
 
 [node name="FinishLine" type="Line2D" parent="."]
-points = PoolVector2Array( 0, 350, 640, 350 )
+points = PoolVector2Array( 7, 350, 640, 350 )
 width = 5.0
 default_color = Color( 0, 0, 0, 1 )
 
@@ -321,8 +321,14 @@ hframes = 10
 wait_time = 0.1
 one_shot = true
 
+[node name="CeilingTween" type="Tween" parent="."]
+
+[node name="BubbleTween" type="Tween" parent="."]
+
+[connection signal="can_fire" from="." to="Player" method="set_fire"]
 [connection signal="prepare_bubble" from="." to="NextBubble" method="_on_Level_prepare_bubble"]
 [connection signal="spawn_bubble" from="." to="BubbleSpawner" method="_on_Level_spawn_bubble"]
 [connection signal="fire_bubble" from="Player" to="." method="_on_Player_fire_bubble"]
 [connection signal="next_bubble" from="NextBubble" to="BubbleSpawner" method="_on_NextBubble_next_bubble"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="tween_all_completed" from="BubbleTween" to="." method="_on_BubbleTween_tween_all_completed"]

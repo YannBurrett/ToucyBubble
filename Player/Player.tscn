@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Sprites/Toucan_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Cannon.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Stand.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/AimLine.png" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -87,10 +88,31 @@ position = Vector2( -65, 3 )
 frames = SubResource( 11 )
 animation = "idle"
 
+[node name="AimeLine" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, -1 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 5 )
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="Aimer" type="Position2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Aimer"]
 texture = ExtResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Aimer"]
+position = Vector2( -8, 0 )
+enabled = true
+cast_to = Vector2( 0, -750 )
+collision_mask = 7
+
+[node name="RayCast2D2" type="RayCast2D" parent="Aimer"]
+position = Vector2( 8, 0 )
+enabled = true
+cast_to = Vector2( 0, -750 )
+collision_mask = 7
 
 [node name="Stand" type="Sprite" parent="."]
 texture = ExtResource( 4 )

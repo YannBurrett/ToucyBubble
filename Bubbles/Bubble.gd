@@ -19,4 +19,6 @@ func lock_bubble():
 	emit_signal("bubble_stopped", position, self, type)
 
 
-
+func _physics_process(_delta):
+	if linear_velocity.y > 0:
+		linear_velocity.y *= -1
