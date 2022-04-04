@@ -1,6 +1,8 @@
 extends Popup
 
 
+func _ready():
+	$Panel/CenterContainer/HBoxContainer/SpinBox.value = GameState.difficulty
 
 func _on_GoButton_pressed():
 	GameState.difficulty = int($Panel/CenterContainer/HBoxContainer/SpinBox.value)

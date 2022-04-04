@@ -4,7 +4,6 @@
 [ext_resource path="res://UI/OptionsMenu.gd" type="Script" id=2]
 
 [node name="OptionsMenu" type="Popup"]
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 300, 330 )
@@ -105,7 +104,6 @@ margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 toggle_mode = true
-pressed = true
 
 [node name="SymbolLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/GridContainer"]
 margin_left = 28.0

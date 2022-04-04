@@ -13,3 +13,7 @@ func update_score(new_score):
 func _on_Tween_tween_step(_object, _key, _elapsed, value):
 	var current_score = stepify(value, 1.0)
 	$Label.text = str(current_score)
+
+
+func _on_Tween_tween_all_completed():
+	score = int($Label.text)
