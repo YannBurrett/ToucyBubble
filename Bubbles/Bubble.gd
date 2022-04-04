@@ -5,6 +5,10 @@ var type = 0 setget change_colour
 signal bubble_stopped
 
 
+func _ready():
+	$Sprite.texture = GameState.bubble_sprites
+
+
 func change_colour(number:int):
 	type = number
 	$Sprite.frame = type

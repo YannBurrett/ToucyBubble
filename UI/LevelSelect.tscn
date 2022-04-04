@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/LevelSelect.gd" type="Script" id=1]
+
+[node name="LevelSelect" type="Popup"]
+margin_right = 240.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 240, 60 )
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 240, 60 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/CenterContainer"]
+margin_left = 31.0
+margin_top = 14.0
+margin_right = 209.0
+margin_bottom = 46.0
+
+[node name="SpinBox" type="SpinBox" parent="Panel/CenterContainer/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 140, 0 )
+min_value = 2.0
+max_value = 10.0
+value = 4.0
+align = 1
+suffix = "colours"
+
+[node name="GoButton" type="Button" parent="Panel/CenterContainer/HBoxContainer"]
+margin_left = 144.0
+margin_right = 178.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+text = "Go!"
+
+[connection signal="pressed" from="Panel/CenterContainer/HBoxContainer/GoButton" to="." method="_on_GoButton_pressed"]

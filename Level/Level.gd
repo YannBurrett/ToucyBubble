@@ -10,6 +10,8 @@ var matching_bubbles = []
 var bubbles_checked = []
 var spawn_counter = 0
 
+var bubbles_to_score = 0
+
 const MAP_X = 19
 const MAP_Y = 13
 const CELL_TYPE = 1
@@ -21,13 +23,14 @@ var bubble_pop_particle = preload("res://Particles/BubblePop.tscn")
 var bubble_drop_particle = preload("res://Particles/BubbleDrop.tscn")
 
 func _ready():
+	number_of_bubble_types = GameState.difficulty
 	randomize()
 	for x in range (1,MAP_X):
 		for y in floor(MAP_Y/2):
 			var bubble_type = randi() % number_of_bubble_types
 			Hex.set_cell(x,y,bubble_type)
 	PlayerLoc = get_PlayerLoc()
-	check_remaining_bubbles()
+	$NextBubble.number_of_available_bubble_types = number_of_bubble_types
 
 
 func get_PlayerLoc():
@@ -99,13 +102,15 @@ func _on_Timer_timeout():
 	check_bubble_counter()
 	check_spawn_counter()
 	emit_signal("can_fire", true)
+	$CanvasLayer/Score.score += bubbles_to_score
+	bubbles_to_score = 0
 	check_game_over()
 
 
 
 func check_bubble_counter():
 	if matching_bubbles.size() > 2:
-		# increment score
+		bubbles_to_score += 3 + ((matching_bubbles.size() -3)*2)
 		for bubble in matching_bubbles:
 			var pop = bubble_pop_particle.instance()
 			add_child(pop)
@@ -145,6 +150,7 @@ func check_detatched_bubbles():
 			drop.position = $TileMap.to_global($TileMap.map_to_world(bubble) + Vector2(16,16))
 			drop.type = $TileMap.get_cellv(bubble)
 			$TileMap.set_cellv(bubble, -1)
+			bubbles_to_score += number_of_bubble_types * 2
 	get_tree().call_group("Drop", "drop_bubbles")
 
 
@@ -197,3 +203,11 @@ func check_game_over():
 
 func _on_BubbleTween_tween_all_completed():
 	check_game_over()
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel") and not $UILayer/MenuPopup.visible:
+		$UILayer/MenuPopup.popup_centered()
+
+
+
