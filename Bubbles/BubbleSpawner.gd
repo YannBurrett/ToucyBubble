@@ -7,6 +7,7 @@ const SPEED = 500
 
 
 func _on_Level_spawn_bubble(angle, location):
+	$BubbleSFXPlayer.play()
 	var new_Bubble = Bubble.instance()
 	new_Bubble.type = next_bubble_type
 	new_Bubble.global_position = location

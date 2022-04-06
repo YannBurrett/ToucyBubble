@@ -12,3 +12,7 @@ func _on_ButtonQuit_pressed():
 
 func _on_Buttonoptions_pressed():
 	$CanvasLayer/Control/OptionsMenu.popup_centered()
+
+
+func _on_ButtonHighScore_pressed():
+	$CanvasLayer/Control/HighScores.popup_centered()

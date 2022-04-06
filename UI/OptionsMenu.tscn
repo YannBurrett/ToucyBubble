@@ -118,6 +118,7 @@ margin_top = 28.0
 margin_right = 24.0
 margin_bottom = 52.0
 rect_min_size = Vector2( 24, 24 )
+toggle_mode = true
 
 [node name="FullScreenLabel" type="Label" parent="Panel/VBoxContainer/CenterContainer/GridContainer"]
 margin_left = 28.0

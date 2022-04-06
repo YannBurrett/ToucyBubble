@@ -1,0 +1,257 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Fonts/DigitalDisco.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/ToucyBubble.theme" type="Theme" id=2]
+[ext_resource path="res://UI/HighScores.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+outline_size = 5
+outline_color = Color( 0.113725, 0.0901961, 0.235294, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_size = 2
+outline_color = Color( 0.113725, 0.0901961, 0.235294, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+outline_size = 2
+outline_color = Color( 0.113725, 0.0901961, 0.235294, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+outline_size = 2
+outline_color = Color( 0.113725, 0.0901961, 0.235294, 1 )
+font_data = ExtResource( 1 )
+
+[node name="HighScores" type="Popup"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 400, 400 )
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 39.0
+margin_right = 368.0
+margin_bottom = 87.0
+custom_fonts/font = SubResource( 1 )
+text = "High Scores"
+align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 91.0
+margin_right = 368.0
+margin_bottom = 301.0
+
+[node name="ScoreContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
+margin_left = 54.0
+margin_right = 314.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 260, 210 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+columns = 2
+
+[node name="Label1" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_right = 94.0
+margin_bottom = 24.0
+text = "1st Place"
+
+[node name="Score1" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_right = 260.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "000 Points"
+align = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 28.0
+margin_right = 94.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 2 )
+text = "2nd Place"
+
+[node name="Score2" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 28.0
+margin_right = 260.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "000 Points"
+align = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 52.0
+margin_right = 94.0
+margin_bottom = 71.0
+custom_fonts/font = SubResource( 3 )
+text = "3rd Place"
+
+[node name="Score3" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 52.0
+margin_right = 260.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "000 Points"
+align = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 75.0
+margin_right = 94.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 4 )
+text = "4th Place"
+
+[node name="Score4" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 75.0
+margin_right = 260.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "000 Points"
+align = 2
+
+[node name="Label5" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 94.0
+margin_right = 94.0
+margin_bottom = 109.0
+custom_fonts/font = SubResource( 4 )
+text = "5th Place"
+
+[node name="Score5" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 94.0
+margin_right = 260.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "000 Points"
+align = 2
+
+[node name="Label6" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 113.0
+margin_right = 94.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 4 )
+text = "6th Place"
+
+[node name="Score6" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 113.0
+margin_right = 260.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "000 Points"
+align = 2
+
+[node name="Label7" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 132.0
+margin_right = 94.0
+margin_bottom = 147.0
+custom_fonts/font = SubResource( 4 )
+text = "7th Place"
+
+[node name="Score7" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 132.0
+margin_right = 260.0
+margin_bottom = 147.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "000 Points"
+align = 2
+
+[node name="Label8" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 151.0
+margin_right = 94.0
+margin_bottom = 166.0
+custom_fonts/font = SubResource( 4 )
+text = "8th Place"
+
+[node name="Score8" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 151.0
+margin_right = 260.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "000 Points"
+align = 2
+
+[node name="Label9" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 170.0
+margin_right = 94.0
+margin_bottom = 185.0
+custom_fonts/font = SubResource( 4 )
+text = "9th Place"
+
+[node name="Score9" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 170.0
+margin_right = 260.0
+margin_bottom = 185.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "000 Points"
+align = 2
+
+[node name="Label10" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_top = 189.0
+margin_right = 94.0
+margin_bottom = 204.0
+custom_fonts/font = SubResource( 4 )
+text = "10th Place"
+
+[node name="Score10" type="Label" parent="VBoxContainer/CenterContainer/ScoreContainer"]
+margin_left = 98.0
+margin_top = 189.0
+margin_right = 260.0
+margin_bottom = 204.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "000 Points"
+align = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 305.0
+margin_right = 368.0
+margin_bottom = 329.0
+alignment = 1
+
+[node name="DoneButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 139.0
+margin_right = 163.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 167.0
+margin_right = 228.0
+margin_bottom = 24.0
+text = "Done!"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/DoneButton" to="." method="_on_DoneButton_pressed"]

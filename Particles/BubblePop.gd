@@ -1,5 +1,6 @@
 extends Particles2D
 
+export (Array, Resource) var pops
 var type = 0 setget change_colour
 
 func _ready():
@@ -11,4 +12,6 @@ func change_colour(value):
 
 
 func pop_bubbles():
+	$BubblePopSFX.stream = pops[randi() % pops.size()]
+	$BubblePopSFX.play()
 	$AnimationPlayer.play("Pop")

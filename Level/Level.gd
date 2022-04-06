@@ -178,10 +178,11 @@ func move_ceiling_down():
 
 
 
-func game_over(_has_won):
+func game_over(has_won):
 	if $Player:
 		$Player.queue_free()
 		$NextBubble.queue_free()
+	$UILayer/MenuPopup.game_over(has_won)
 
 
 

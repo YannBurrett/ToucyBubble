@@ -1,7 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sprites/BubbleSpriteSheet2.png" type="Texture" id=1]
 [ext_resource path="res://Particles/BubblePop.gd" type="Script" id=2]
+[ext_resource path="res://SFX/Pop3.wav" type="AudioStream" id=3]
+[ext_resource path="res://SFX/Pop5.wav" type="AudioStream" id=4]
+[ext_resource path="res://SFX/Pop1.wav" type="AudioStream" id=5]
+[ext_resource path="res://SFX/Pop6.wav" type="AudioStream" id=6]
+[ext_resource path="res://SFX/Pop2.wav" type="AudioStream" id=7]
+[ext_resource path="res://SFX/Pop4.wav" type="AudioStream" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
@@ -78,7 +84,11 @@ explosiveness = 1.0
 process_material = SubResource( 4 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+pops = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 6 ) ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Pop = SubResource( 5 )
 anims/RESET = SubResource( 6 )
+
+[node name="BubblePopSFX" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
