@@ -4,6 +4,8 @@ onready var Hex = $TileMap
 signal spawn_bubble
 signal prepare_bubble
 signal can_fire
+signal game_over
+signal panic
 
 var PlayerLoc: Vector2
 var matching_bubbles = []
@@ -120,6 +122,7 @@ func check_bubble_counter():
 			$TileMap.set_cellv(bubble, -1)
 		get_tree().call_group("pop", "pop_bubbles")
 	check_detatched_bubbles()
+	check_panic()
 
 
 func check_detatched_bubbles():
@@ -183,6 +186,7 @@ func game_over(has_won):
 		$Player.queue_free()
 		$NextBubble.queue_free()
 	$UILayer/MenuPopup.game_over(has_won)
+	emit_signal("game_over", has_won)
 
 
 
@@ -209,6 +213,23 @@ func _on_BubbleTween_tween_all_completed():
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel") and not $UILayer/MenuPopup.visible:
 		$UILayer/MenuPopup.popup_centered()
+
+
+func check_panic():
+	var should_panic = false
+	var bubbles = $TileMap.get_used_cells()
+	var panic_line = $TileMap.to_local(Vector2(0,323))
+	panic_line = $TileMap.world_to_map(panic_line)
+	panic_line = panic_line.y
+	
+	for bubble in bubbles:
+		if bubble.y >= panic_line:
+			should_panic = true
+	
+	emit_signal("panic", should_panic)
+
+
+
 
 
 

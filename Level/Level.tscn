@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Backgrounds/backgroundColorForest.png" type="Texture" id=1]
 [ext_resource path="res://StaticBodies/Wall.tscn" type="PackedScene" id=2]
@@ -13,6 +13,203 @@
 [ext_resource path="res://Level/TileMap.gd" type="Script" id=11]
 [ext_resource path="res://Bubbles/Blank_bubbles.tres" type="TileSet" id=12]
 [ext_resource path="res://SFX/Shoot.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sprites/BubbleMachineSpriteSheet.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/pipe.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Panda.tscn" type="PackedScene" id=16]
+
+[sub_resource type="Animation" id=16]
+resource_name = "BubbleOnDeck"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NextBubble/BubbleOnDeck:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 256, 512 ), Vector2( 320, 512 ), Vector2( 64, 512 ), Vector2( 256, 512 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NextBubble/ReadyBubble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NextBubble/BubbleOnDeck:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NextBubble/BubbleOnDeck:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 720.0 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("NextBubble")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reset_on_deck_colour"
+} ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("NextBubble/BubbleOnDeck:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 512 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NextBubble/ReadyBubble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NextBubble/BubbleOnDeck:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NextBubble/BubbleOnDeck:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 128, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 256, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 384, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 128, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 256, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 384, 128, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 128, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 256, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 384, 256, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 384, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 128, 384, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 6 )
@@ -69,10 +266,20 @@ script = ExtResource( 7 )
 stream = ExtResource( 13 )
 bus = "SFX"
 
+[node name="Pipe" type="Sprite" parent="."]
+position = Vector2( 142, 512 )
+texture = ExtResource( 15 )
+
 [node name="NextBubble" type="Node2D" parent="." groups=["Bubbles"]]
 script = ExtResource( 8 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NextBubble"]
+root_node = NodePath("../..")
+anims/BubbleOnDeck = SubResource( 16 )
+anims/RESET = SubResource( 17 )
+
 [node name="ReadyBubble" type="Sprite" parent="NextBubble"]
+visible = false
 position = Vector2( 319, 512 )
 texture = ExtResource( 5 )
 hframes = 10
@@ -95,7 +302,17 @@ layer = 2
 
 [node name="MenuPopup" parent="UILayer" instance=ExtResource( 10 )]
 
+[node name="BubbleMachine" type="AnimatedSprite" parent="."]
+position = Vector2( 89, 484 )
+frames = SubResource( 15 )
+frame = 1
+playing = true
+
+[node name="Panda" parent="." instance=ExtResource( 16 )]
+
 [connection signal="can_fire" from="." to="Player" method="set_fire"]
+[connection signal="game_over" from="." to="Panda" method="_on_Level_game_over"]
+[connection signal="panic" from="." to="Panda" method="_on_Level_panic"]
 [connection signal="prepare_bubble" from="." to="NextBubble" method="_on_Level_prepare_bubble"]
 [connection signal="spawn_bubble" from="." to="BubbleSpawner" method="_on_Level_spawn_bubble"]
 [connection signal="updated_score" from="CanvasLayer/Score" to="UILayer/MenuPopup" method="_on_Score_updated_score"]

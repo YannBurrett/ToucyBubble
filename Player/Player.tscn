@@ -11,36 +11,6 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 128, 102 )
 
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 128, 102 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 102, 128, 102 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 128, 102 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 128, 102, 128, 102 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 128, 102 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 128, 102 )
-
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 1 )
@@ -56,6 +26,36 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 384, 102, 128, 102 )
 
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 102, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 102, 128, 102 )
+
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
@@ -63,27 +63,27 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 9 ), SubResource( 8 ) ],
 "loop": false,
-"name": "flap",
-"speed": 15.0
+"name": "look",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 4 ), SubResource( 6 ), SubResource( 7 ), SubResource( 6 ), SubResource( 4 ) ],
 "loop": false,
 "name": "blink",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 10 ), SubResource( 9 ), SubResource( 8 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ) ],
 "loop": false,
-"name": "look",
-"speed": 5.0
+"name": "flap",
+"speed": 15.0
 } ]
 
 [node name="Player" type="Node2D" groups=["Player"]]
 position = Vector2( 0, 2 )
 script = ExtResource( 2 )
 
-[node name="ToucySprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -65, 3 )
 frames = SubResource( 11 )
 animation = "idle"
