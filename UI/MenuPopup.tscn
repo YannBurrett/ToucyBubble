@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Fonts/DigitalDisco.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/ToucyBubble.theme" type="Theme" id=2]
 [ext_resource path="res://UI/OptionsMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/MenuPopup.gd" type="Script" id=4]
+[ext_resource path="res://Fonts/DigitalDisco-Thin.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -11,7 +12,14 @@ outline_size = 2
 outline_color = Color( 0.113725, 0.0901961, 0.235294, 1 )
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 12
+outline_color = Color( 0.113725, 0.0901961, 0.235294, 1 )
+use_mipmaps = true
+font_data = ExtResource( 5 )
+
 [node name="MenuPopup" type="Popup"]
+visible = true
 margin_right = 260.0
 margin_bottom = 300.0
 theme = ExtResource( 2 )
@@ -29,9 +37,9 @@ margin_right = -32.0
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="Panel/VBoxContainer"]
-margin_top = 40.0
+margin_top = 24.0
 margin_right = 196.0
-margin_bottom = 80.0
+margin_bottom = 64.0
 custom_fonts/font = SubResource( 1 )
 text = "Menu"
 align = 1
@@ -45,9 +53,9 @@ text = "Your Score: 000"
 align = 1
 
 [node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer"]
-margin_top = 84.0
+margin_top = 68.0
 margin_right = 196.0
-margin_bottom = 260.0
+margin_bottom = 244.0
 columns = 2
 
 [node name="RestartButton" type="Button" parent="Panel/VBoxContainer/GridContainer"]
@@ -124,6 +132,15 @@ size_flags_horizontal = 3
 text = "Back"
 align = 1
 
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 248.0
+margin_right = 196.0
+margin_bottom = 275.0
+custom_fonts/font = SubResource( 2 )
+text = "Music: Run and Jump by Bart on
+http://opengameart.org"
+align = 1
+
 [node name="HighScoreLabel" type="RichTextLabel" parent="Panel"]
 visible = false
 margin_top = -64.0
@@ -131,6 +148,7 @@ margin_right = 260.0
 rect_min_size = Vector2( 260, 64 )
 bbcode_enabled = true
 bbcode_text = "[wave amp = 50 freq=2][center]NEW HIGHSCORE![/center][/wave]"
+text = "NEW HIGHSCORE!"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 

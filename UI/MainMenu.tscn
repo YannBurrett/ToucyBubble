@@ -303,7 +303,7 @@ align = 1
 position = Vector2( -64, 512 )
 frames = SubResource( 11 )
 animation = "Walk"
-frame = 1
+frame = 4
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
